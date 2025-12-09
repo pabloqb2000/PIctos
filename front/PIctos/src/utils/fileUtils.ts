@@ -26,3 +26,17 @@ export const validateImageFile = (file: File): boolean => {
   return file.type.startsWith('image/')
 }
 
+/**
+ * Fetches an image from the public folder and converts it to a File object
+ * @param filename - The filename of the image in the public folder
+ * @returns Promise that resolves to a File object
+ */
+export const fetchImageAsFile = async (filename: string): Promise<File> => {
+  const response = await fetch(`/${filename}`)
+  if (!response.ok) {
+    throw new Error(`Failed to fetch image: ${filename}`)
+  }
+  const blob = await response.blob()
+  return new File([blob], filename, { type: blob.type })
+}
+
