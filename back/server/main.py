@@ -5,6 +5,7 @@ import imghdr
 from pathlib import Path
 import json
 from fastapi.middleware.cors import CORSMiddleware
+from tenacity import retry, stop_after_delay, wait_random
 
 with open("./config.json", "r") as f:
     config = json.load(f)
@@ -27,6 +28,14 @@ app.add_middleware(
 
 class ImagePayload(BaseModel):
     image_base64: str
+
+@retry(
+    stop=stop_after_delay(2),
+    wait=wait_random(0, max=0.05)
+)
+def write_to_file(output_path: str, image_bytes: bytes):
+    with open(output_path, "wb+") as f:
+        f.write(image_bytes)
 
 
 @app.post("/upload-image")
@@ -54,8 +63,6 @@ async def upload_image(payload: ImagePayload):
     ext = allowed_extensions[file_type]
     output_path = Path(f"{img_path}.{ext}")
 
-    # Write binary image to file
-    with open(output_path, "wb") as f:
-        f.write(image_bytes)
+    write_to_file(output_path=output_path, image_bytes=image_bytes)
 
     return {"message": "Image saved", "filename": str(output_path)}

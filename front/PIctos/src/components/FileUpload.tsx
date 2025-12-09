@@ -68,7 +68,7 @@ function FileUpload() {
 
   return (
     <div className="app-container">
-      <h1>Image Upload</h1>
+      <h2>Image Upload</h2>
       
       <div
         className={`upload-zone ${isDragging ? 'dragging' : ''} ${isUploading ? 'uploading' : ''}`}

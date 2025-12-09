@@ -14,6 +14,7 @@ interface ImageSet {
 
 function DefaultFiles() {
   // Define image sets - each set contains a list of image dictionaries
+  const dir_name = 'imgs/'
   const imageSets: ImageSet[] = [
     {
       name: 'Set 1',
@@ -27,6 +28,10 @@ function DefaultFiles() {
       images: [
         { img_filename: 'ojos.png' },
         { img_filename: 'ojos.png' },
+        { img_filename: 'pelo.png' },
+        { img_filename: 'pelo.png' },
+        { img_filename: 'pelo.png' },
+        { img_filename: 'pelo.png' },
         { img_filename: 'pelo.png' },
       ],
     },
@@ -46,7 +51,7 @@ function DefaultFiles() {
 
     try {
       // Fetch the image from public folder and convert to File
-      const file = await fetchImageAsFile(imageItem.img_filename)
+      const file = await fetchImageAsFile(dir_name + imageItem.img_filename)
       
       // Upload to backend
       const data = await uploadImage(file)
@@ -61,7 +66,6 @@ function DefaultFiles() {
   return (
     <div className="default-files-container">
       <div className="selector-container">
-        <label htmlFor="image-set-selector">Select Image Set: </label>
         <select
           id="image-set-selector"
           value={selectedSetIndex}
@@ -89,7 +93,7 @@ function DefaultFiles() {
             disabled={uploadingIndex !== null}
           >
             <img
-              src={`/${imageItem.img_filename}`}
+              src={`/${dir_name}${imageItem.img_filename}`}
               alt={imageItem.img_filename}
               className="button-image"
             />
@@ -100,7 +104,7 @@ function DefaultFiles() {
         ))}
       </div>
 
-      {message && (
+      {message && false && (
         <div className="message success">
           {message}
         </div>
