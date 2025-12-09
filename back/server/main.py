@@ -4,12 +4,26 @@ import base64
 import imghdr
 from pathlib import Path
 import json
+from fastapi.middleware.cors import CORSMiddleware
 
 with open("./config.json", "r") as f:
     config = json.load(f)
 img_path = config.get("IMG_PATH", "../display/imgs/image")
 
 app = FastAPI()
+
+# Enable CORS
+origins = [
+    "http://localhost:5173",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 class ImagePayload(BaseModel):
     image_base64: str
