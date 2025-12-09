@@ -1,3 +1,4 @@
+import os
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import base64
@@ -34,6 +35,13 @@ class ImagePayload(BaseModel):
     wait=wait_random(0, max=0.05)
 )
 def write_to_file(output_path: str, image_bytes: bytes):
+    no_ext = '.'.join(output_path.split('.')[:-1])
+    extensions = ["png", "jpg", "jpeg", "webp"]
+    for ext in extensions:
+        new_ext = f'{no_ext}.{ext}'
+        if os.path.isfile(new_ext):
+            os.remove(new_ext)
+    
     with open(output_path, "wb+") as f:
         f.write(image_bytes)
 
@@ -66,3 +74,40 @@ async def upload_image(payload: ImagePayload):
     write_to_file(output_path=output_path, image_bytes=image_bytes)
 
     return {"message": "Image saved", "filename": str(output_path)}
+
+@app.post("/eyes")
+async def replace_with_eyes():
+    ojos_file = Path("../display/imgs/ojos.png")
+
+    if not ojos_file.exists():
+        raise HTTPException(status_code=404, detail="ojos.png not found")
+
+    # Read source file
+    with open(ojos_file, "rb") as f:
+        image_bytes = f.read()
+
+    # Always save as image.png
+    output_path = Path(f"{img_path}.png")
+
+    write_to_file(output_path=str(output_path), image_bytes=image_bytes)
+
+    return {"message": "Image replaced with ojos.png", "filename": str(output_path)}
+
+
+@app.post("/hair")
+async def replace_with_hair():
+    pelo_file = Path("../display/imgs/pelo.png")
+
+    if not pelo_file.exists():
+        raise HTTPException(status_code=404, detail="pelo.png not found")
+
+    # Read source file
+    with open(pelo_file, "rb") as f:
+        image_bytes = f.read()
+
+    # Always save as image.png
+    output_path = Path(f"{img_path}.png")
+
+    write_to_file(output_path=str(output_path), image_bytes=image_bytes)
+
+    return {"message": "Image replaced with pelo.png", "filename": str(output_path)}

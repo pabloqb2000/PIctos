@@ -3,6 +3,7 @@ import type { DragEvent, ChangeEvent } from 'react'
 import '../App.css'
 import { validateImageFile } from '../utils/fileUtils'
 import { uploadImage } from '../services/imageService'
+import SongButton from './SongButton'
 
 function FileUpload() {
   const [isDragging, setIsDragging] = useState(false)
@@ -113,6 +114,8 @@ function FileUpload() {
           </div>
         )}
       </div>
+      
+      <SongButton />
 
       {message && (
         <div className="message success">

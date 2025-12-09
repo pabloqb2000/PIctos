@@ -2,6 +2,7 @@ import { useState } from 'react'
 import '../App.css'
 import { uploadImage } from '../services/imageService'
 import { fetchImageAsFile } from '../utils/fileUtils'
+import SongButton from './SongButton'
 
 interface ImageItem {
   img_filename: string
@@ -103,6 +104,9 @@ function DefaultFiles() {
           </button>
         ))}
       </div>
+      <center>
+        <SongButton />
+      </center>
 
       {message && false && (
         <div className="message success">
