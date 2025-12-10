@@ -67,7 +67,7 @@ async def upload_image(payload: ImagePayload):
     ext = allowed_extensions[file_type]
     output_path = Path(f"{img_path}.{ext}")
 
-    write_to_file(output_path=output_path, image_bytes=image_bytes)
+    write_to_file(output_path=str(output_path), image_bytes=image_bytes)
 
     return {"message": "Image saved", "filename": str(output_path)}
 
