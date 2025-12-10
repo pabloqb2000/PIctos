@@ -18,22 +18,97 @@ function DefaultFiles() {
   const dir_name = 'imgs/'
   const imageSets: ImageSet[] = [
     {
-      name: 'Set 1',
+      name: 'Cuerpo 01',
       images: [
         { img_filename: 'ojos.png' },
+        { img_filename: 'boca.png' },
+        { img_filename: 'oreja.png' },
+        { img_filename: 'nariz.png' },
         { img_filename: 'pelo.png' },
+        { img_filename: 'mano.png' },
       ],
     },
     {
-      name: 'Set 2',
+      name: 'Cuerpo 02',
+      images: [
+        { img_filename: 'cuello.png' },
+        { img_filename: 'espalda.png' },
+        { img_filename: 'tripa.png' },
+        { img_filename: 'brazo.png' },
+        { img_filename: 'pierna.png' },
+        { img_filename: 'pie.png' },
+      ],
+    },
+    {
+      name: 'Cuerpo Full',
       images: [
         { img_filename: 'ojos.png' },
+        { img_filename: 'boca.png' },
+        { img_filename: 'oreja.png' },
+        { img_filename: 'nariz.png' },
+        { img_filename: 'pelo.png' },
+        { img_filename: 'mano.png' },
+        { img_filename: 'cuello.png' },
+        { img_filename: 'espalda.png' },
+        { img_filename: 'tripa.png' },
+        { img_filename: 'brazo.png' },
+        { img_filename: 'pierna.png' },
+        { img_filename: 'pie.png' },
+      ],
+    },
+    {
+      name: 'Cuerpo Imgs',
+      images: [
         { img_filename: 'ojos.png' },
-        { img_filename: 'pelo.png' },
-        { img_filename: 'pelo.png' },
-        { img_filename: 'pelo.png' },
-        { img_filename: 'pelo.png' },
-        { img_filename: 'pelo.png' },
+        { img_filename: 'eyes.jpg' },
+        { img_filename: 'eyes_02.jpg' },
+        
+        { img_filename: 'oreja.png' },
+        { img_filename: 'ear.jpg' },
+        { img_filename: 'ear_02.jpg' },
+        
+        { img_filename: 'nariz.png' },
+        { img_filename: 'nose.jpg' },
+        { img_filename: 'nose_02.jpg' },
+        
+        { img_filename: 'boca.png' },
+        { img_filename: 'mouth.jpg' },
+        { img_filename: 'mouth_02.jpg' },
+      ],
+    },
+    {
+      name: 'Comida',
+      images: [
+        { img_filename: 'agua.png' },
+        { img_filename: 'carne.png' },
+        { img_filename: 'galleta.png' },
+        { img_filename: 'huevo.png' },
+        { img_filename: 'manzana.png' },
+        { img_filename: 'pescado.png' },
+        { img_filename: 'plátano.png' },
+        { img_filename: 'tomate.png' },
+      ],
+    },
+    {
+      name: 'Cosas',
+      images: [
+        { img_filename: 'mesa.png' },
+        { img_filename: 'silla.png' },
+        { img_filename: 'rotulador.png' },
+        { img_filename: 'lápiz.png' },
+        { img_filename: 'pared.png' },
+        { img_filename: 'suelo.png' },
+      ],
+    },
+    {
+      name: 'Animales',
+      images: [
+        { img_filename: 'perro.png' },
+        { img_filename: 'gato.png' },
+        { img_filename: 'vaca.png' },
+        { img_filename: 'cerdo.png' },
+        { img_filename: 'gallina.png' },
+        { img_filename: 'conejo.png' },
       ],
     },
   ]

@@ -5,7 +5,9 @@ const SongSelector = () => {
   const [selectedSong, setSelectedSong] = useState<string>('')
   const [availableSongs] = useState<string[]>([
     'song_01.mp3',
-    'song_02.mp3'
+    'song_02.mp3',
+    'full_song.mp3',
+    'short_song.mp3',
   ])
 
   useEffect(() => {
