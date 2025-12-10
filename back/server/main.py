@@ -15,16 +15,12 @@ img_path = config.get("IMG_PATH", "../display/imgs/image")
 app = FastAPI()
 
 # Enable CORS
-origins = [
-    "http://localhost:5173",
-]
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_origins=["*"],          # Allow all origins
+    allow_credentials=False,      # Must be False when allow_origins="*"
+    allow_methods=["*"],          # Allow all HTTP methods
+    allow_headers=["*"],          # Allow all headers
 )
 
 class ImagePayload(BaseModel):
