@@ -1,6 +1,14 @@
 import { fileToBase64 } from '../utils/fileUtils'
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+const getApiUrl = (): string => {
+  const storedUrl = localStorage.getItem('apiUrl')
+  if (storedUrl) {
+    return storedUrl
+  }
+  const defaultUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+  localStorage.setItem('apiUrl', defaultUrl)
+  return defaultUrl
+}
 
 export interface UploadImageResponse {
   message: string
@@ -21,8 +29,11 @@ export const uploadImage = async (file: File): Promise<UploadImageResponse> => {
   // Convert file to base64
   const base64 = await fileToBase64(file)
 
+  // Get current API URL from localStorage
+  const currentApiUrl = getApiUrl()
+
   // Send to backend
-  const response = await fetch(`${API_URL}/upload-image`, {
+  const response = await fetch(`${currentApiUrl}/upload-image`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

@@ -1,14 +1,17 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
-const SongSelector = () => {
+const Config = () => {
   const [selectedSong, setSelectedSong] = useState<string>('')
+  const [apiUrl, setApiUrl] = useState<string>('')
   const [availableSongs] = useState<string[]>([
     'song_01.mp3',
     'song_02.mp3',
     'full_song.mp3',
     'short_song.mp3',
   ])
+
+  const defaultApiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
   useEffect(() => {
     // Load selected song from local storage on mount
@@ -20,7 +23,17 @@ const SongSelector = () => {
       setSelectedSong(availableSongs[0])
       localStorage.setItem('selectedSong', availableSongs[0])
     }
-  }, [availableSongs])
+
+    // Load API URL from local storage on mount
+    const storedApiUrl = localStorage.getItem('apiUrl')
+    if (storedApiUrl) {
+      setApiUrl(storedApiUrl)
+    } else {
+      // Set default API URL if nothing is stored
+      setApiUrl(defaultApiUrl)
+      localStorage.setItem('apiUrl', defaultApiUrl)
+    }
+  }, [availableSongs, defaultApiUrl])
 
   const handleSongChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const song = event.target.value
@@ -28,10 +41,28 @@ const SongSelector = () => {
     localStorage.setItem('selectedSong', song)
   }
 
+  const handleApiUrlChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const url = event.target.value
+    setApiUrl(url)
+    localStorage.setItem('apiUrl', url)
+  }
+
   return (
     <div className="song-selector">
-      <h2>Song Selector</h2>
+      <h2>Config</h2>
       <div className="selector-container">
+        <label htmlFor="api-url-input">API URL:</label>
+        <input
+          id="api-url-input"
+          type="text"
+          value={apiUrl}
+          onChange={handleApiUrlChange}
+          placeholder={defaultApiUrl}
+          style={{ width: '100%', padding: '8px', marginTop: '8px', marginBottom: '16px' }}
+        />
+      </div>
+      <div className="selector-container">
+        <label htmlFor="song-select">Song Selector:</label>
         <select
           id="song-select"
           value={selectedSong}
@@ -57,5 +88,5 @@ const SongSelector = () => {
   )
 }
 
-export default SongSelector
+export default Config
 
