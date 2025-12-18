@@ -5,10 +5,14 @@ const Config = () => {
   const [selectedSong, setSelectedSong] = useState<string>('')
   const [apiUrl, setApiUrl] = useState<string>('')
   const [availableSongs] = useState<string[]>([
+    'full_song_01.mp3',
+    'full_song_02.mp3',
+    'happy_song.mp3',
     'song_01.mp3',
     'song_02.mp3',
-    'full_song.mp3',
-    'short_song.mp3',
+    'song_03.mp3',
+    'song_04.mp3',
+    'song_05.mp3',
   ])
 
   const defaultApiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000'
