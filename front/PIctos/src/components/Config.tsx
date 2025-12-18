@@ -5,6 +5,7 @@ const Config = () => {
   const [selectedSong, setSelectedSong] = useState<string>('')
   const [apiUrl, setApiUrl] = useState<string>('')
   const [availableSongs] = useState<string[]>([
+    'Random',
     'full_song_01.mp3',
     'full_song_02.mp3',
     'happy_song.mp3',
