@@ -74,6 +74,14 @@ function DefaultFiles() {
         { img_filename: 'boca.png' },
         { img_filename: 'mouth.jpg' },
         { img_filename: 'mouth_02.jpg' },
+        
+        { img_filename: 'pelo.png' },
+        { img_filename: 'hair.png' },
+        { img_filename: 'hair_02.jpg' },
+        
+        { img_filename: 'mano.png' },
+        { img_filename: 'hand.png' },
+        { img_filename: 'hand_02.jpg' },
       ],
     },
     {
